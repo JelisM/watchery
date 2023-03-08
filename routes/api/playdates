@@ -1,0 +1,55 @@
+const express = require('express');
+const router = express.Router();
+
+
+router.get('/playdates', (req, res) => {
+    Playdate.find({}, (err, playdates) => {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          res.status(200).json(playdates);
+        }
+      });
+  });
+  
+router.post('/playdates', (req, res) => {
+    const { id, date, location, description } = req.body; // Destructure the fields from request body
+  
+    const newPlaydate = new Playdate({ // Create a new Playdate object
+      id,
+      date,
+      location,
+      description
+    });
+  
+    newPlaydate.save() // Save the new playdate object to the database
+      .then(() => res.status(200).json({ success: true, message: 'Playdate created successfully' }))
+      .catch((err) => res.status(500).json({ success: false, message: 'Error creating playdate', error: err }));
+  });
+  
+    router.put('/playdates/:id', async (req, res) => {
+        try {
+          const updatedPlaydate = await Playdate.findByIdAndUpdate(
+            req.params.id, // id of the playdate to update
+            req.body, // updated playdate data
+            { new: true } // return the updated playdate instead of the old one
+          );
+      
+          if (!updatedPlaydate) {
+            return res.status(404).json({ message: 'Playdate not found' });
+          }
+      
+          res.json(updatedPlaydate);
+        } catch (error) {
+          console.error(error);
+          res.status(500).json({ message: 'Server error' });
+        }
+      });
+  
+  
+  router.delete('/playdates/:id', (req, res) => {
+    // code to delete a playdate with the given id
+  });
+
+
+  module.exports = router;
