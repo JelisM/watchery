@@ -5,8 +5,6 @@ import API from "../../utils/API";
 import {Col, Row, Container} from "../../components/Grid";
 // import {List, ListItem} from "../../components/List";
 import {Input, FormBtn} from "../../components/Form";
-
-import axios from 'axios';
 import {Checkbox, CheckboxGroup} from 'react-checkbox-group';
 import {Redirect} from "react-router-dom";
 import PlacesAutocomplete, {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
