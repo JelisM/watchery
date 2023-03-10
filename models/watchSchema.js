@@ -1,6 +1,6 @@
 const Schema = require("mongoose").Schema;
 
-const itemSchema = new Schema(
+const watchSchema = new Schema(
   {
     name: {
       type: String,
@@ -18,4 +18,4 @@ const itemSchema = new Schema(
   }
 );
 
-module.exports = itemSchema;
+module.exports = watchSchema;

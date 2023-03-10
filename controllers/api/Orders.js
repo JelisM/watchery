@@ -1,32 +1,41 @@
 const Order = require('../../models/order');
- const Item = require('../../models/item');
+
 
 module.exports = {
   cart,
-  addToCart,
-  setItemQtyInCart,
+  addWatchToCart,
+  setWatchQtyInCart,
   checkout,
+  getAllForUser
 };
 
+async function getAllForUser(req, res) {
+  const orders = await Order.find({user: req.user._id, isPaid: true}).sort('-updatedAt');
+  res.json(orders);
+}
 
+// A cart is the unpaid order for a user
 async function cart(req, res) {
+  console.log(req.user._id);
   const cart = await Order.getCart(req.user._id);
   res.json(cart);
 }
 
-
-async function addToCart(req, res) {
+// Add an Makeup to the cart
+async function addWatchToCart(req, res) {
   const cart = await Order.getCart(req.user._id);
-  await cart.addItemToCart(req.params.id);
+  await cart.addMakeupToCart(req.params.id);
   res.json(cart);
 }
 
-async function setItemQtyInCart(req, res) {
+// Updates an makeup's qty in the cart
+async function setWatchQtyInCart(req, res) {
   const cart = await Order.getCart(req.user._id);
-  await cart.setItemQty(req.body.itemId, req.body.newQty);
+  await cart.setWatchQty(req.body.makeupId, req.body.newQty);
   res.json(cart);
 }
 
+// Update the cart's isPaid property to true
 async function checkout(req, res) {
   const cart = await Order.getCart(req.user._id);
   cart.isPaid = true;
