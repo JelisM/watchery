@@ -61,22 +61,24 @@ export default function NoteDetailPage({ listItems, deleteListItem, setListItems
                 </div>
                
                 <div className="when">
-                    <h3 className="details-title">When:</h3>
-                    {!editDetailsBtn ?
-                        <div className="detail-text">
-                            <p className="scroll">{listItem.listItemDate}</p>
-                        </div>
-                        :
-                        <textarea
-                            type="text"
-                            value={detailsFormData.listItemDate}
-                            name="listItemDate"
-                            onChange={handleEditDetailsChange}
-                            placeholder="No date added yet"
-                            className="details-input"
-                        />
-                    }
-                </div>
+  <h3 className="details-title">When:</h3>
+  {!editDetailsBtn ? (
+    <div className="detail-text">
+      <p className="scroll">
+        {(new Date(listItem.listItemDate)).toLocaleDateString("en-US")}
+      </p>
+    </div>
+  ) : (
+    <input
+      type="date"
+      value={detailsFormData.listItemDate}
+      name="listItemDate"
+      onChange={handleEditDetailsChange}
+      placeholder="No date added yet"
+      className="details-input"
+    />
+  )}
+</div>
                 
                 <div className="note">
                     <h4>Notes:</h4>
