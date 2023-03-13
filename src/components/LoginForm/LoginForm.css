@@ -1,0 +1,24 @@
+.login-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3vmin;
+    margin: 0 50vmin;
+}
+
+.email-and-password {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5vmin;
+}
+
+.login-btn {
+    background-color: black;
+    padding: 1vmin 6vmin;
+    font-size: 2vmin;
+}
+
+.login-btn:hover {
+    transform: scale(1.2);
+}

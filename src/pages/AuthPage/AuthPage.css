@@ -1,0 +1,47 @@
+.auth-page-title {
+    font-size: 8vmin;
+    color:white
+}
+
+p.login-message {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.75vmin;
+
+}
+
+p.slogan {
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 2vmin;
+    color:white
+}
+
+.auth-page {
+    background-image: url('https://i.imgur.com/Mosghpr.jpg');
+    height: 105vmin;
+}
+
+main.auth-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-option-btn {
+    margin: 0 auto;
+    background-color: rgba(5, 5, 5, 0.943);
+    color: white;
+    border: none;
+    padding: 0.75vmin;
+}
+
+.login-option-btn:hover {
+    transform: scale(1.2);
+}
+
+p.error-message {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5vmin;
+    margin: 0;
+}
+
+

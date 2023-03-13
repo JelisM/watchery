@@ -1,22 +1,23 @@
-import SignUpForm from '../../components/SignUpForm/SignUpForm'
-import LoginForm from '../../components/LoginForm/LoginForm'
-import { useState } from 'react'
+import { useState } from 'react';
+import "./AuthPage.css"
+import SignUpForm from '../../components/SignUpForm/SignUpForm';
+import LoginForm from '../../components/LoginForm/LoginForm';
 
 export default function AuthPage({ setUser }) {
-    const [showSignUp, setShowSignUp] = useState(false);
+    const [showAuthPage, setShowAuthPage] = useState(true)
+
     return (
-
-        <main> 
-        <h1 className='watchery'> WATCHERY</h1>
-
-            <img src="https://i.imgur.com/VjyuX4X.jpg" alt="watchery logo" className="watcheryLogo"/>
+        <main className="auth-page">
             
-            <button onClick={() => setShowSignUp(!showSignUp)}>{showSignUp ? 'Log In' : 'Sign Up'}</button>
-      {showSignUp ?
-        <SignUpForm setUser={setUser} />
-        :
-        <LoginForm setUser={setUser} />
-      }
-    </main>
+            <div className='auth-page-contents'>
+                <h1 className='auth-page-title'>&nbsp;PlanIt&nbsp;</h1>
+                <p className="slogan">lets keep it organized</p>
+                {showAuthPage ? <SignUpForm setUser={setUser} /> : <LoginForm setUser={setUser} />}
+                {showAuthPage ? <p className="login-message">Already have an account?</p> : <p className="login-message">Don't have an account yet?</p>}
+                <button className="login-option-btn" onClick={() => setShowAuthPage(!showAuthPage)}>
+                    {showAuthPage ? 'Login' : 'Sign Up'}
+                </button>
+            </div>
+        </main>
     );
 }

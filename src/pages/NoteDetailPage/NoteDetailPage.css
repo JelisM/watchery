@@ -1,0 +1,40 @@
+.details-page {
+  background-image: linear-gradient(to bottom, #FEC5BB, #FFF4E0);
+  margin-top: 6vmin;
+  }
+  
+  .edit-and-delete-btns,
+  .edit-details-btn,
+  .delete-details-btn {
+  background-color: #FF847C;
+  }
+  
+  .edit-details-btn:hover,
+  .delete-details-btn:hover,
+  .submit-details-change:hover {
+  background-color: #E84A5F;
+  }
+  
+  .details-title,
+  .detail-text,
+  .what-title,
+  .what-detail-text {
+  color: #2A363B;
+  }
+  
+  .details-link {
+  color: #FC9D9A;
+  }
+  
+  .scroll {
+  background-color: #FEE5AD;
+  }
+  
+  .details-input {
+  background-color: #FFF4E0;
+  color: #2A363B;
+  }
+  
+  
+  
+  

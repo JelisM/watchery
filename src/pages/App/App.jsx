@@ -1,25 +1,79 @@
-import React, { useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import './App.css';
+import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
+import './App.css';
 import AuthPage from '../AuthPage/AuthPage';
-import NewOrderPage from '../NewOrderPage/NewOrderPage';
-import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
+import CheckedPage from '../CheckedPage/CheckedPage';
+import NavBar from '../../components/NavBar/NavBar';
+import NoteListPage from '../NoteListPage/NoteListPage';
+import NoteDetailPage from '../NoteDetailPage/NoteDetailPage';
+import * as suggestionsAPI from "../../utilities/suggestions-api"
+import * as listItemsAPI from "../../utilities/listItems-api"
 
 export default function App() {
   const [user, setUser] = useState(getUser());
+  const [suggestions, setSuggestions] = useState([]);
+  const [listItems, setListItems] = useState([]);
+
+  async function getSuggestions() {
+    const suggestions = await suggestionsAPI.getSuggestions();
+    setSuggestions(suggestions)
+  }
+
+  async function addListItem(data) {
+    console.log(data);
+    const listItem = await listItemsAPI.create(data)
+    const updatedList = [...listItems, listItem];
+    updatedList.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+    setListItems(updatedList)
+  }
+
+  async function deleteListItem(id) {
+    const listItems = await listItemsAPI.remove(id);
+    setListItems(listItems);
+  }
+
+  useEffect(() => {
+    async function getListItems() {
+      const allListItems = await listItemsAPI.getAllForUser();
+      setListItems(allListItems);
+    };
+    if (user) getListItems();
+  }, [user]
+  )
+
   return (
     <main className="App">
       { user ?
-        <Routes>
-          {/* client-side route that renders the component instance if the path matches the url in the address bar */}
-          <Route path="/orders/new" element={<NewOrderPage user={user} setUser={setUser} />} />
-          <Route path="/orders" element={<OrderHistoryPage />} />
-          {/* redirect to /orders/new if path in address bar hasn't matched a <Route> above */}
-          <Route path="/*" element={<Navigate to="/orders/new" />} />
-        </Routes>
-        :
-        <AuthPage setUser={setUser} />
+          <>
+            <NavBar user={user} setUser={setUser} />
+            <Routes>
+              {/* Route components in here */}
+              <Route 
+                path="/checkedlist" 
+                element={<NoteListPage 
+                  listItems={listItems} 
+                  getSuggestions={getSuggestions} 
+                  setSuggestions={setSuggestions} 
+                  addListItem={addListItem}
+                  deleteListItem={deleteListItem}
+                  setListItems={setListItems}
+                  suggestions={suggestions}
+                />}
+              />
+              <Route path="/checked" element={<CheckedPage listItems={listItems} />} />
+              <Route 
+                path="/details/:id" 
+                element={<NoteDetailPage 
+                  listItems={listItems} 
+                  deleteListItem={deleteListItem}
+                  setListItems={setListItems}
+                />}
+              />
+            </Routes>
+          </>
+          :
+          <AuthPage setUser={setUser} />
       }
     </main>
   );

@@ -1,0 +1,19 @@
+.checked-page {
+    background-image: url('https://i.imgur.com/FHRubcL.jpg');
+}
+
+.checked-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10vmin 30vmin 0 30vmin;
+    height: 70vmin;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.checked-heading {
+    font-size: 8vmin;
+    padding-top: 5vmin;
+    margin-left: 28vmin;
+}

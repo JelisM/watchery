@@ -1,0 +1,35 @@
+.add-list-item-btn {
+    background-color: black;
+    padding: .75vmin 2.5vmin;
+    font-size: 1.5vmin;
+    margin: 1.5vmin 0 0 4.5vmin;
+}
+
+.add-list-item-btn:hover {
+    transform: scale(1.2);
+}
+
+.add-one>h3 {
+    font-family: 'Anonymous Pro', monospace;
+    margin: 0 0 2vmin 4.5vmin;
+    font-size: 4vmin;
+}
+
+.add-to-list-form>input {
+    width: 38vmin;
+    height: 6vmin;
+    padding: 1vmin;
+    margin-left: 6vmin;
+}
+
+.no-items {
+    font-family: 'Open Sans', sans-serif;
+    margin: 3vmin 0 4vmin 4.5vmin;
+
+}
+
+.planner-list-items {
+    height: 55vmin;
+    overflow-x: hidden;
+    overflow-y: auto;
+}

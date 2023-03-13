@@ -1,0 +1,30 @@
+.checked-item-with-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1vmin;
+    padding: 0 1vmin;
+}
+
+.checked-item-object {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2vmin;
+    text-decoration: line-through;
+    padding: 1vmin;
+}
+
+div.checked-list-item {
+    background-color: black;
+    width: 40vmin;
+    height: 6vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.read-only-checkbox {
+    accent-color: white;
+    height: 4vmin;
+    width: 4vmin;
+    margin-right: 2vmin;
+}
